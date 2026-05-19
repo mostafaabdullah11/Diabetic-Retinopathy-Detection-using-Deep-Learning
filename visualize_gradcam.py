@@ -248,7 +248,7 @@ def _save_figure(
     plt.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
-    print(f"✅  Grad-CAM saved to: {out_path}")
+    print(f" Grad-CAM saved to: {out_path}")
 
 
 # ─────────────────────────────────────────────
@@ -317,7 +317,7 @@ def run_gradcam(
         pred_grade = int(probs.argmax())
 
     vis_class = target_class if target_class is not None else pred_grade
-    print(f"🔍  Computing Grad-CAM for Grade {vis_class} "
+    print(f" Computing Grad-CAM for Grade {vis_class} "
           f"({'predicted' if target_class is None else 'specified'})...")
 
     # ── Grad-CAM ──
