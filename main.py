@@ -28,7 +28,7 @@ WEIGHTS_PATH = "best_model_fold0.pth"
 
 def print_banner():
     print("\n" + "=" * 56)
-    print("   🩺  Diabetic Retinopathy Detection System")
+    print("     Diabetic Retinopathy Detection System")
     print("=" * 56)
     print("  1.  Train model")
     print("  2.  Evaluate model  (confusion matrix + ROC)")
@@ -76,7 +76,7 @@ def action_gradcam():
 
 def action_gui():
     import subprocess
-    print("\n🌐 Launching Streamlit GUI...")
+    print("\n Launching Streamlit GUI...")
     print("   Open http://localhost:8501 in your browser.\n")
     subprocess.run([sys.executable, "-m", "streamlit", "run", "app.py"])
 
@@ -107,6 +107,6 @@ if __name__ == "__main__":
             except KeyboardInterrupt:
                 print("\n[interrupted]")
             except Exception as exc:
-                print(f"\n❌  Error: {exc}")
+                print(f"\n  Error: {exc}")
         else:
             print("Invalid choice — enter 1 to 6.")
