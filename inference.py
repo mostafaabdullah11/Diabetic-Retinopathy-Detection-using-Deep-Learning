@@ -184,7 +184,7 @@ def predict_image(
     if os.path.exists(bias_path):
         bias = torch.load(bias_path, map_location=device)
         if verbose:
-            print(f"  ℹ️  Loaded QWK-optimal bias from {os.path.basename(bias_path)}")
+            print(f"    Loaded QWK-optimal bias from {os.path.basename(bias_path)}")
 
     # ── Forward pass with TTA ──
     # Averages N augmented versions for more stable minority-class predictions.
@@ -212,7 +212,7 @@ def predict_image(
         urgency = GRADE_URGENCY[predicted_grade]
 
         print("\n" + "─" * 52)
-        print(f"  🩺  DR Prediction Report")
+        print(f"    DR Prediction Report")
         print("─" * 52)
         print(f"  Image  : {os.path.basename(image_path)}")
         print(f"  Result : {urgency}  Grade {predicted_grade} — {label}")
@@ -221,8 +221,8 @@ def predict_image(
         print("  Class probabilities:")
         for grade in range(num_classes):
             bar_len   = int(probs[grade] * 30)
-            bar       = "█" * bar_len + "░" * (30 - bar_len)
-            marker    = "◀" if grade == predicted_grade else " "
+            bar       = "" * bar_len + "░" * (30 - bar_len)
+            marker    = "" if grade == predicted_grade else " "
             lbl, _    = GRADE_LABELS[grade]
             print(f"  Grade {grade} [{bar}] {probs[grade]*100:5.1f}%  {lbl} {marker}")
         print("─" * 52 + "\n")
