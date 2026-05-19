@@ -1,0 +1,61 @@
+data:
+  train_csv:   "data/raw/train.csv"
+  images_dir:  "data/raw/train_images/"
+  image_size:  224
+
+model:
+  name:        "efficientnet_b0"
+  num_classes: 5
+
+training:
+  batch_size:  16
+  epochs:      30
+  fold:        0
+  n_splits:    5
+  train_all_folds: false
+
+
+  learning_rate: 0.0001
+  backbone_lr:   0.00001
+
+
+  unfreeze_epoch: 1
+  warmup_epochs:  2
+
+
+  use_weighted_sampler: true
+  max_oversample_ratio: 4.0
+
+
+  use_class_weights: true
+
+
+  focal_weight:   0.5
+  ordinal_weight: 0.5
+
+  gamma:           2.5
+  label_smoothing: 0.0
+
+
+  use_mixup:   true
+  mixup_alpha: 0.2
+
+
+
+  run_bias_correction: true
+
+
+
+  early_stopping_patience: 7
+  scheduler:   "cosine_restart"
+
+  step_size:   5
+  step_gamma:  0.5
+  cosine_t0:     10
+  cosine_tmult:   1
+
+
+  use_tta: true
+  tta_n_augments: 5
+
+device: "cpu"
