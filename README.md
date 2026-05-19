@@ -30,7 +30,7 @@ The system achieves:
 - [Technologies](#technologies)
 - [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
-- [License](#license)
+)
 
 ---
 
