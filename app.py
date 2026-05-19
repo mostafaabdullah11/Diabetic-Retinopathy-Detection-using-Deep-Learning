@@ -87,11 +87,11 @@ st.markdown(
 CONFIG_PATH = "config/config.yaml"
 
 GRADE_INFO: Dict[int, Tuple[str, str, str, str]] = {
-    0: ("No DR", "#27ae60", "✅", "No diabetic retinopathy detected. Routine screening is usually enough."),
-    1: ("Mild", "#f1c40f", "🟡", "Mild NPDR. Microaneurysms may appear. Blood sugar control is important."),
-    2: ("Moderate", "#e67e22", "🟠", "Moderate NPDR. More lesions are visible and follow-up is more important."),
-    3: ("Severe", "#e74c3c", "🔴", "Severe NPDR. Referral to an ophthalmologist is recommended."),
-    4: ("Proliferative", "#8e44ad", "🆘", "Proliferative DR. Urgent referral is needed because of high vision-loss risk."),
+    0: ("No DR", "#27ae60", "No diabetic retinopathy detected. Routine screening is usually enough."),
+    1: ("Mild", "#f1c40f", "Mild NPDR. Microaneurysms may appear. Blood sugar control is important."),
+    2: ("Moderate", "#e67e22", "Moderate NPDR. More lesions are visible and follow-up is more important."),
+    3: ("Severe", "#e74c3c", "Severe NPDR. Referral to an ophthalmologist is recommended."),
+    4: ("Proliferative", "#8e44ad", "Proliferative DR. Urgent referral is needed because of high vision-loss risk."),
 }
 
 # ─────────────────────────────────────────────
@@ -315,7 +315,7 @@ def _render_result_card(predicted_grade: int, probs: np.ndarray):
     st.progress(float(confidence) / 100.0)
     st.plotly_chart(_confidence_plot(probs, predicted_grade), use_container_width=True)
 
-    with st.expander("📖 What does this mean?"):
+    with st.expander(" What does this mean?"):
         st.markdown(explain_prediction(predicted_grade, probs))
 
 
@@ -401,7 +401,7 @@ def home_page():
     _model_info_banner(weights_path, loaded)
 
     uploaded_file = st.file_uploader(
-        "📂 Upload a fundus image",
+        " Upload a fundus image",
         type=["png", "jpg", "jpeg"],
         help="APTOS-style fundus photograph.",
     )
@@ -420,7 +420,7 @@ def home_page():
         st.caption(f"{image_pil.width} × {image_pil.height} px")
 
     with right:
-        st.subheader("🔍 Prediction")
+        st.subheader("Prediction")
         with st.spinner("Running inference..."):
             predicted_grade, probs = predict_image(
                 loaded.model,
@@ -448,7 +448,7 @@ def home_page():
                 )
 
     st.markdown("---")
-    st.subheader("🔥 Grad-CAM Explainability")
+    st.subheader(" Grad-CAM Explainability")
     st.markdown(
         "Grad-CAM highlights the retinal regions that influenced the prediction. This is useful for checking whether the model focuses on lesions rather than irrelevant background areas."
     )
@@ -460,7 +460,7 @@ def home_page():
                 st.image(tmp_path, caption="Grad-CAM visualisation", use_container_width=True)
                 with open(tmp_path, "rb") as f:
                     st.download_button(
-                        label="⬇️ Download Grad-CAM image",
+                        label=" Download Grad-CAM image",
                         data=f,
                         file_name="gradcam_output.png",
                         mime="image/png",
@@ -471,7 +471,7 @@ def home_page():
 
 
 def batch_inference_page():
-    st.title("📊 Batch Inference")
+    st.title("Batch Inference")
     st.markdown(
         "Upload a CSV file that contains an `image_path` column. The app will predict each image and export the results."
     )
@@ -584,7 +584,7 @@ def educational_page():
 
 
 def _show_demo_instructions():
-    with st.expander("📘 How to use the app"):
+    with st.expander(" How to use the app"):
         st.markdown(
             """
             **1. Train the model** if needed:
@@ -611,17 +611,17 @@ def _show_demo_instructions():
 
 def main():
     st.sidebar.title("Navigation")
-    page = st.sidebar.radio("Go to", ["🏠 Home", "📊 Batch Inference", "📖 Educational"])
+    page = st.sidebar.radio("Go to", ["Home", "Batch Inference", "Educational"])
 
     st.sidebar.markdown("---")
-    st.sidebar.markdown("### ℹ️ About the model")
+    st.sidebar.markdown("### About the model")
     st.sidebar.markdown(
         "APTOS 2019 DR grading with a pretrained CNN, confidence display, bias correction, and explainability."
     )
 
-    if page == "🏠 Home":
+    if page == " Home":
         home_page()
-    elif page == "📊 Batch Inference":
+    elif page == " Batch Inference":
         batch_inference_page()
     else:
         educational_page()
