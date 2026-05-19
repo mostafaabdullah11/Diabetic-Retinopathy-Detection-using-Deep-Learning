@@ -78,10 +78,10 @@ The disease is classified into **5 severity grades**:
 | Grade | Samples | Percentage |
 |---|---|---|
 | 0 | 1805 | 49.3% |
-| 1 | 74 | 2.0% |
+| 1 | 370 | 10.1% |
 | 2 | 999 | 27.3% |
-| 3 | 39 | 1.1% |
-| 4 | 59 | 1.6% |
+| 3 | 193 | 5.3% |
+| 4 | 295 | 8.0% |
 
 The dataset is highly imbalanced.
 
